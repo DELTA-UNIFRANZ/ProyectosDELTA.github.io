@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de Componentes - Grupo DELTA</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/componentes.css">
+  <style>
+    /* styles/componentes.css */
+
+    /* Estados de compra */
+    .status {
+    padding: 0.4em 0.6em;
+    border-radius: 0.25rem;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    }
+
+    /* No comprado: rojo */
+    .status.no-comprado {
+    background-color: #e74c3c;
+    }
+
+    /* Comprado x piezas: amarillo */
+    .status.parcial {
+    background-color: #f1c40f;
+    color: #000;
+    }
+
+    /* Comprado todo: verde */
+    .status.completo {
+    background-color: #27ae60;
+    }
+
+    /* Ajustes opcionales para la tabla */
+    .component-table th,
+    .component-table td {
+    vertical-align: middle;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <h1 class="main-title">Detalle de Componentes</h1>
+  </header>
+  
+  <div class="container">
+    <a href="index.html" class="btn-custom">
+      <i class="fas fa-arrow-left me-1"></i> Regresar
+    </a>
+    
+    <div class="inventory-section">
+      <h2 class="section-title">Inventario de Componentes</h2>
+      
+      <!-- Filtros y búsqueda -->
+      <div class="filter-container">
+        <select id="categoryFilter">
+          <option value="all">Todas las categorías</option>
+          <option value="sensores">Sensores / Drivers / Actuadores</option>
+          <option value="micro">Microcontroladores</option>
+          <option value="material">Material metálico</option>
+          <option value="servicios">Servicios</option>
+          <option value="otros">Otros</option>
+        </select>
+        
+        <select id="sortBy">
+          <option value="name">Ordenar por nombre</option>
+          <option value="price-low">Precio: Menor a mayor</option>
+          <option value="price-high">Precio: Mayor a menor</option>
+          <option value="qty">Cantidad</option>
+        </select>
+      </div>
+      
+      <div class="search-container">
+        <input type="text" placeholder="Buscar componente..." id="searchInput">
+        <button type="button"><i class="fas fa-search"></i></button>
+      </div>
+      
+      <!-- Tabla de componentes -->
+      <div class="table-responsive">
+        <table class="component-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Imagen</th>
+              <th>Cantidad Requerida</th>
+              <th>Precio Unitario (Bs)</th>
+              <th>Precio Total (Bs)</th>
+              <th>Estado de Compra</th>
+              <th>Comprado por:</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="category-header">
+              <td colspan="7">Sensores / Drivers / Actuadores</td>
+            </tr>
+            <tr>
+              <td>Controlador de motor DC TB6612FNG</td>
+              <td><img src="Image/tb6612.jpg" alt="TB6612FNG" class="component-image"></td>
+              <td>2</td>
+              <td>25</td>
+              <td>50</td>
+              <td class="status completo">Comprado todo</td>
+              <td><strong>Froilan</strong></td>
+            </tr>
+            <tr>
+              <td>MÓDULO MAX6675 + TERMOCUPLA TIPO K</td>
+              <td><img src="Image/max6675.jpg" alt="MAX6675" class="component-image"></td>
+              <td>1</td>
+              <td>48</td>
+              <td>48</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>MOTOR REDUCTOR 12KG-CM 12-24V - 150RPM</td>
+              <td><img src="Image/motoreductor.jpg" alt="Sensor DHT11" class="component-image"></td>
+              <td>4</td>
+              <td>90</td>
+              <td>360</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>NEMA17 Stepper Motor 1.2A 50N.cm 1.8deg</td>
+              <td><img src="Image/nema17.jpg" alt="Sensor de humedad" class="component-image"></td>
+              <td>2</td>
+              <td>174</td>
+              <td>348</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>NEMA17 DE 40MM 1.2A KS42STH40</td>
+              <td><img src="Image/nema17 2.jpg" alt="Sensor de humedad" class="component-image"></td>
+              <td>3</td>
+              <td>140</td>
+              <td>420</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Driver PAP DRV8825</td>
+              <td><img src="Image/DRV8825.jpg" alt="Sensor de humedad" class="component-image"></td>
+              <td>12</td>
+              <td>24</td>
+              <td>288</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            
+            <tr class="category-header">
+              <td colspan="7">Microcontroladores</td>
+            </tr>
+            <tr>
+              <td>Microcontroladores</td>
+              <td><img src="/api/placeholder/60/60" alt="Microcontroladores" class="component-image"></td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td class="status parcial">Comprado -- piezas</td>
+              <td>nadie</td>
+            </tr>
+
+            <tr class="category-header">
+              <td colspan="7">Material metálico</td>
+            </tr>
+            <tr>
+              <td>Pernos</td>
+              <td><img src="Image/pernos.jpg" alt="Chasis" class="component-image"></td>
+              <td>varios</td>
+              <td>--</td>
+              <td>--</td>
+              <td class="status no-comprado">Comprado -- piezas</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Varillas de aluminio de 8mm(1 metro)</td>
+              <td><img src="Image/varilla.jpg" alt="Varillas" class="component-image"></td>
+              <td>1</td>
+              <td>15</td>
+              <td>15</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Varillas de aluminio de 6mm(1 metro)</td>
+              <td><img src="Image/varilla.jpg" alt="Varillas" class="component-image"></td>
+              <td>1</td>
+              <td>15</td>
+              <td>15</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Planchas de acero (100x30cm)</td>
+              <td><img src="Image/PLANCHAS.jpg" alt="Planchas" class="component-image"></td>
+              <td>1</td>
+              <td>50</td>
+              <td>50</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Rodamento 608</td>
+              <td><img src="Image/608.jpg" alt="Planchas" class="component-image"></td>
+              <td>15</td>
+              <td>6</td>
+              <td>90</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Rodamento 6202</td>
+              <td><img src="Image/6202.png" alt="Planchas" class="component-image"></td>
+              <td>1</td>
+              <td>14</td>
+              <td>14</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Rodv wheel delrin v-SLOTament</td>
+              <td><img src="Image/v-slot.htm" alt="Planchas" class="component-image"></td>
+              <td>8</td>
+              <td>21</td>
+              <td>168</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Perfil de aluminio V 20x40 68-70cm</td>
+              <td><img src="Image/20x40.jpg" alt="Planchas" class="component-image"></td>
+              <td>1</td>
+              <td>--</td>
+              <td>--</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Perno M3 largo (10cm)</td>
+              <td><img src="Image/perno m3 largo.jpg" alt="Planchas" class="component-image"></td>
+              <td>6</td>
+              <td>--</td>
+              <td>--</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Tuerca M3</td>
+              <td><img src="Image/tuercam3.jpg" alt="Planchas" class="component-image"></td>
+              <td>12</td>
+              <td>--</td>
+              <td>--</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>37GB 37mm Soporte de montaje motor (angular)</td>
+              <td><img src="Image/soporte.jpg" alt="Planchas" class="component-image"></td>
+              <td>4</td>
+              <td>8</td>
+              <td>32</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>Acople de rueda hexagonal (de --mm que sea el mismo del motor)</td>
+              <td><img src="Image/acople.jpg" alt="Planchas" class="component-image"></td>
+              <td>4</td>
+              <td>4</td>
+              <td>44</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            <tr>
+              <td>T8 ANTI BACKLASH RESORTE TUERCA DE SEPARACIÓN 8MM</td>
+              <td><img src="Image/t8 tuerca.jpg" alt="Planchas" class="component-image"></td>
+              <td>1</td>
+              <td>34</td>
+              <td>34</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+
+            <tr class="category-header">
+              <td colspan="7">Servicios</td>
+            </tr>
+            <tr>
+              <td>Claude o ChatGPT</td>
+              <td><img src="/api/claude/60/60" alt="IA" class="component-image"></td>
+              <td>1</td>
+              <td>20</td>
+              <td>20</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+
+            <tr class="category-header">
+              <td colspan="7">Otros</td>
+            </tr>
+            <tr>
+              <td>otros componentes</td>
+              <td><img src="/api/otros/60/60" alt="Otros" class="component-image"></td>
+              <td>--</td>
+              <td>--</td>
+              <td>--</td>
+              <td class="status no-comprado">No comprado</td>
+              <td>nadie</td>
+            </tr>
+            
+            <tr class="total-row">
+              <td colspan="4"></td>
+              <td>TOTAL:</td>
+              <td>1996</td>
+              <td></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Funcionalidad básica para filtros y búsqueda
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const sortBy = document.getElementById('sortBy');
+    
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const rows = document.querySelectorAll('.component-table tbody tr:not(.category-header):not(.total-row)');
+      rows.forEach(row => {
+        const name = row.cells[0].textContent.toLowerCase();
+        row.style.display = name.includes(searchTerm) ? '' : 'none';
+      });
+      document.querySelectorAll('.category-header').forEach(header => {
+        let hasVisible = false;
+        let el = header.nextElementSibling;
+        while (el && !el.classList.contains('category-header') && !el.classList.contains('total-row')) {
+          if (el.style.display !== 'none') { hasVisible = true; break; }
+          el = el.nextElementSibling;
+        }
+        header.style.display = hasVisible ? '' : 'none';
+      });
+    });
+
+    categoryFilter.addEventListener('change', function() {
+      const cat = this.value;
+      document.querySelectorAll('.category-header').forEach(header => {
+        const name = header.textContent.toLowerCase();
+        let show = cat === 'all' || name.includes(cat);
+        header.style.display = show ? '' : 'none';
+        let el = header.nextElementSibling;
+        while (el && !el.classList.contains('category-header') && !el.classList.contains('total-row')) {
+          el.style.display = show ? '' : 'none';
+          el = el.nextElementSibling;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

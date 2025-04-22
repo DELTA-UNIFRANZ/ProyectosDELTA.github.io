@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe de Gastos - Grupo DELTA</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    html, body { 
+      background-color: #121212; 
+      color: #e0e0e0; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+    }
+    .container { 
+      max-width: 1000px; 
+      margin: 20px auto; 
+      padding: 0 20px; 
+    }
+    .main-header { 
+      text-align: center; 
+      padding: 20px 0; 
+      background: #0d1c0d; 
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .main-title { 
+      color: #2fff74; 
+      font-size: 2rem; 
+      margin: 0; 
+    }
+    .btn-custom { 
+      background-color: #0d1c0d; 
+      color: #2fff74; 
+      border: 1px solid #2fff74; 
+      padding: 8px 16px; 
+      border-radius: 6px; 
+      text-decoration: none; 
+      display: inline-block; 
+      margin-bottom: 20px; 
+      transition: all 0.3s ease;
+    }
+    .btn-custom:hover {
+      background-color: #0d2c0d;
+      transform: translateY(-2px);
+    }
+    .chart { 
+      margin: 40px 0; 
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .chart-title {
+      color: #2fff74;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .gauges { 
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .gauge-container {
+      text-align: center;
+      position: relative;
+      width: 220px;
+    }
+    .gauge-label {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      color: #2fff74;
+    }
+    .gauge-value {
+      position: absolute;
+      top: 60%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+    .table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin: 30px 0; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .table th, .table td { 
+      border: 1px solid #333; 
+      padding: 12px; 
+      text-align: center; 
+    }
+    .table th { 
+      background: #0d1c0d; 
+      color: #2fff74; 
+    }
+    .table tr:nth-child(even) {
+      background-color: #181818;
+    }
+    .detail-btn { 
+      background: none; 
+      border: 1px solid #2fff74; 
+      color: #2fff74; 
+      padding: 6px 12px; 
+      border-radius: 4px; 
+      cursor: pointer; 
+      transition: all 0.3s ease;
+    }
+    .detail-btn:hover {
+      background-color: #0d2c0d;
+      transform: translateY(-2px);
+    }
+    /* Modal transparente */
+    .modal { 
+      display: none; 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: rgba(0,0,0,0.7); 
+      align-items: center; 
+      justify-content: center; 
+      z-index: 1000;
+    }
+    .modal-content { 
+      background: #1a1a1a; 
+      padding: 25px; 
+      border: 1px solid #2fff74; 
+      border-radius: 10px; 
+      width: 90%; 
+      max-width: 400px; 
+      position: relative; 
+      animation: modalFade 0.3s ease;
+    }
+    @keyframes modalFade {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .modal-header {
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    .modal-close { 
+      position: absolute; 
+      top: 10px; 
+      right: 15px; 
+      color: #e0e0e0; 
+      font-size: 1.5rem; 
+      cursor: pointer; 
+      transition: color 0.3s ease;
+    }
+    .modal-close:hover {
+      color: #2fff74;
+    }
+    ul { 
+      list-style: disc inside; 
+      text-align: left; 
+      margin: 15px 0; 
+      padding-left: 10px;
+    }
+    li {
+      padding: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <h1 class="main-title">Informe de Gastos - Grupo DELTA</h1>
+  </header>
+  <div class="container">
+    <a href="index.html" class="btn-custom"><i class="fas fa-arrow-left me-1"></i> Regresar</a>
+
+    <!-- Tabla de gastos -->
+    <div class="chart">
+      <h2 class="chart-title">Tabla de Gastos</h2>
+      <table class="table">
+        <thead>
+          <tr><th>Nombre</th><th>Gasto (Bs)</th><th>%</th><th>Detalle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Edsonn Iver Condori Condori</td><td>150</td><td>20%</td><td><button class="detail-btn" data-member="edson">Ver detalle</button></td></tr>
+          <tr><td>Daner Miguel Mamani Caiza</td><td>150</td><td>20%</td><td><button class="detail-btn" data-member="daner">Ver detalle</button></td></tr>
+          <tr><td>Froilan Mamani Nina</td><td>200</td><td>26.7%</td><td><button class="detail-btn" data-member="froilan">Ver detalle</button></td></tr>
+          <tr><td>Sergio Andrés Mendoza Alvarado</td><td>150</td><td>20%</td><td><button class="detail-btn" data-member="sergio">Ver detalle</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Gráfico: Gastos vs Presupuesto -->
+    <div class="chart">
+      <h2 class="chart-title">Gastos vs Presupuesto (750 Bs)</h2>
+      <div class="gauges">
+        <div class="gauge-container">
+          <canvas id="gaugeEdson"></canvas>
+          <div class="gauge-label">Edsonn</div>
+          <div class="gauge-value">150 / 750 Bs</div>
+        </div>
+        <div class="gauge-container">
+          <canvas id="gaugeDaner"></canvas>
+          <div class="gauge-label">Daner</div>
+          <div class="gauge-value">150 / 750 Bs</div>
+        </div>
+        <div class="gauge-container">
+          <canvas id="gaugeFroilan"></canvas>
+          <div class="gauge-label">Froilan</div>
+          <div class="gauge-value">200 / 750 Bs</div>
+        </div>
+        <div class="gauge-container">
+          <canvas id="gaugeSergio"></canvas>
+          <div class="gauge-label">Sergio</div>
+          <div class="gauge-value">150 / 750 Bs</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráfico: Evolución de gastos -->
+    <div class="chart">
+      <h2 class="chart-title">Evolución de Gastos</h2>
+      <canvas id="generalChart"></canvas>
+    </div>
+
+    <!-- Modal de detalle -->
+    <div id="detailModal" class="modal">
+      <div class="modal-content">
+        <span id="modalClose" class="modal-close">&times;</span>
+        <div class="modal-header">
+          <h2 id="modalTitle">Detalle de Gastos</h2>
+        </div>
+        <ul id="detailList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Config de Chart.js
+    Chart.defaults.color = '#e0e0e0';
+    Chart.defaults.borderColor = '#333';
+    
+    // Datos generales para el gráfico de evolución
+    const generalData = {
+      labels: ['01-04-2025','05-04-2025','10-04-2025','15-04-2025'],
+      datasets: [{
+        label: 'Edsonn', 
+        data: [50,100,150,150], 
+        fill: false, 
+        borderColor: '#2fff74',
+        tension: 0.3,
+        borderWidth: 3
+      },{
+        label: 'Daner', 
+        data: [30,80,120,150], 
+        fill: false, 
+        borderColor: '#ffc107',
+        tension: 0.3,
+        borderWidth: 3
+      },{
+        label: 'Froilan', 
+        data: [0,50,100,200], 
+        fill: false, 
+        borderColor: '#0dcaf0',
+        tension: 0.3,
+        borderWidth: 3
+      },{
+        label: 'Sergio', 
+        data: [20,60,110,150], 
+        fill: false, 
+        borderColor: '#6f42c1',
+        tension: 0.3,
+        borderWidth: 3
+      }]
+    };
+    
+    // Configuración del gráfico de evolución
+    const generalChartConfig = {
+      type: 'line',
+      data: generalData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              boxWidth: 15,
+              padding: 15
+            }
+          },
+          tooltip: {
+            backgroundColor: '#1a1a1a',
+            titleColor: '#2fff74',
+            bodyColor: '#e0e0e0',
+            borderColor: '#2fff74',
+            borderWidth: 1,
+            padding: 10,
+            displayColors: true,
+            usePointStyle: true
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Gasto (Bs)',
+              color: '#2fff74'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Fecha',
+              color: '#2fff74'
+            }
+          }
+        }
+      }
+    };
+    
+    // Crear el gráfico de evolución
+    new Chart(document.getElementById('generalChart'), generalChartConfig);
+
+    // Variables de presupuesto
+    const budget = 750;
+    const spends = { 
+      edson: 150, 
+      daner: 150, 
+      froilan: 200, 
+      sergio: 150 
+    };
+    
+    // Colores para los gauges
+    const colors = {
+      green: '#2fff74',
+      yellow: '#ffc107',
+      red: '#dc3545',
+      gray: '#333333'
+    };
+    
+    // Crear los gráficos de gauge
+    const gaugeOptions = {
+      cutout: '70%',
+      circumference: 180,
+      rotation: 270,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: false }
+      },
+      elements: {
+        arc: {
+          borderWidth: 0
+        }
+      }
+    };
+    
+    // Función para crear un gauge
+    function createGauge(elementId, spendAmount) {
+      const percentage = (spendAmount / budget) * 100;
+      let color;
+      
+      if (percentage <= 25) color = colors.green;
+      else if (percentage <= 50) color = colors.yellow;
+      else color = colors.red;
+      
+      const data = {
+        datasets: [{
+          data: [spendAmount, budget - spendAmount],
+          backgroundColor: [color, colors.gray],
+          borderWidth: 0
+        }]
+      };
+      
+      return new Chart(document.getElementById(elementId), {
+        type: 'doughnut',
+        data: data,
+        options: gaugeOptions
+      });
+    }
+    
+    // Crear los gauges para cada miembro
+    createGauge('gaugeEdson', spends.edson);
+    createGauge('gaugeDaner', spends.daner);
+    createGauge('gaugeFroilan', spends.froilan);
+    createGauge('gaugeSergio', spends.sergio);
+
+    // Detalles de gastos
+    const details = {
+      edson: ['150 Bs - Pago de la impresión 3D'],
+      daner: ['150 Bs - Pago de la impresión 3D'],
+      froilan: ['150 Bs - Pago de la impresión 3D', '50 Bs - Pago de piezas faltantes de impresión 3D'],
+      sergio: ['150 Bs - Pago de la impresión 3D']
+    };
+    
+    // Nombres completos para el título del modal
+    const fullNames = {
+      edson: 'Edsonn Iver Condori Condori',
+      daner: 'Daner Miguel Mamani Caiza',
+      froilan: 'Froilan Mamani Nina',
+      sergio: 'Sergio Andrés Mendoza Alvarado'
+    };
+    
+    // Elementos del DOM para el modal
+    const modal = document.getElementById('detailModal');
+    const detailList = document.getElementById('detailList');
+    const modalTitle = document.getElementById('modalTitle');
+    
+    // Configurar los botones de detalle
+    document.querySelectorAll('.detail-btn').forEach(btn => {
+      btn.onclick = () => {
+        const member = btn.getAttribute('data-member');
+        modalTitle.textContent = `Detalle de Gastos - ${fullNames[member]}`;
+        detailList.innerHTML = details[member].map(item => `<li>${item}</li>`).join('');
+        modal.style.display = 'flex';
+      };
+    });
+    
+    // Cerrar el modal
+    document.getElementById('modalClose').onclick = () => modal.style.display = 'none';
+    window.onclick = e => { if(e.target === modal) modal.style.display = 'none'; };
+  </script>
+</body>
+</html>

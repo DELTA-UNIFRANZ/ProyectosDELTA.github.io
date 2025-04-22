@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto 1: Sistema de Clasificación con IA</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    html, body { 
+      background-color: #121212; 
+      color: #e0e0e0; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+    }
+    .container { 
+      max-width: 1000px; 
+      margin: 20px auto; 
+      padding: 0 20px; 
+    }
+    .main-header { 
+      text-align: center; 
+      padding: 20px 0; 
+      background: #0d1c0d; 
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .main-title { 
+      color: #2fff74; 
+      font-size: 2rem; 
+      margin: 0; 
+    }
+    .project-description {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .milestone-section {
+      background: #1a1a1a;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .milestone-header {
+      background: #0d1c0d;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      border-bottom: 1px solid #333;
+    }
+    .milestone-header:hover {
+      background: #0d2c0d;
+    }
+    .milestone-title {
+      color: #2fff74;
+      margin: 0;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+    }
+    .milestone-title i {
+      margin-right: 10px;
+      font-size: 1.3rem;
+    }
+    .milestone-status {
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+    .status-pending {
+      background-color: #6c757d;
+      color: white;
+    }
+    .status-in-progress {
+      background-color: #ffc107;
+      color: #212529;
+    }
+    .status-completed {
+      background-color: #2fff74;
+      color: #212529;
+    }
+    .milestone-content {
+      padding: 0;
+    }
+    .tasks-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .task-item {
+      padding: 15px 20px;
+      border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .task-item:last-child {
+      border-bottom: none;
+    }
+    .task-info {
+      flex-grow: 1;
+    }
+    .task-name {
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .task-meta {
+      display: flex;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+    .task-meta div {
+      margin-right: 20px;
+    }
+    .task-meta i {
+      margin-right: 5px;
+    }
+    .btn-custom { 
+      background-color: #0d1c0d; 
+      color: #2fff74; 
+      border: 1px solid #2fff74; 
+      padding: 8px 16px; 
+      border-radius: 6px; 
+      text-decoration: none; 
+      display: inline-block; 
+      margin-bottom: 20px; 
+      transition: all 0.3s ease;
+    }
+    .btn-custom:hover {
+      background-color: #0d2c0d;
+      transform: translateY(-2px);
+    }
+    .chevron {
+      transition: transform 0.3s ease;
+    }
+    .rotate {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <h1 class="main-title">Proyecto 2: Robot de Limpieza con IA</h1>
+  </header>
+  
+  <div class="container">
+    <a href="index.html" class="btn-custom"><i class="fas fa-arrow-left me-1"></i> Regresar</a>
+    
+    <div class="project-description">
+        <h2>Detalles del Proyecto</h2>
+        <p>
+          Este proyecto de Robot de Limpieza con IA tiene como objetivo diseñar y construir un sistema robótico autónomo capaz de mapear espacios interiores, detectar suciedad y obstáculos, y ejecutar rutinas de limpieza de forma eficiente. 
+          Combina sensores de ultrasonido y LiDAR para la navegación, visión por computadora para reconocimiento de superficies, y algoritmos de aprendizaje profundo para optimizar rutas de limpieza y adaptarse a diferentes tipos de suelo.
+        </p>
+      </div>
+      
+    <!-- Hito 1 -->
+    <div class="milestone-section">
+      <div class="milestone-header" onclick="toggleMilestone(this)">
+        <h3 class="milestone-title">
+          <i class="fas fa-boxes"></i>
+          Adquisición de materia y componentes
+        </h3>
+        <div class="d-flex align-items-center">
+          <span class="milestone-status status-pending">Pendiente</span>
+          <i class="fas fa-chevron-down ms-3 chevron"></i>
+        </div>
+      </div>
+      <div class="milestone-content" style="display: none;">
+        <ul class="tasks-list">
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 1: Investigación de componentes necesarios</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 2: Cotización de materiales</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 3: Compra de componentes</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Hito 2 -->
+    <div class="milestone-section">
+      <div class="milestone-header" onclick="toggleMilestone(this)">
+        <h3 class="milestone-title">
+          <i class="fas fa-cogs"></i>
+          Ensamblado de la parte hardware
+        </h3>
+        <div class="d-flex align-items-center">
+          <span class="milestone-status status-pending">Pendiente</span>
+          <i class="fas fa-chevron-down ms-3 chevron"></i>
+        </div>
+      </div>
+      <div class="milestone-content" style="display: none;">
+        <ul class="tasks-list">
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 1: Diseño del esquema de conexiones</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 2: Montaje de componentes electrónicos</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 3: Prueba inicial de hardware</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Hito 3 -->
+    <div class="milestone-section">
+      <div class="milestone-header" onclick="toggleMilestone(this)">
+        <h3 class="milestone-title">
+          <i class="fas fa-robot"></i>
+          Creación & entrenamiento del modelo de clasificación
+        </h3>
+        <div class="d-flex align-items-center">
+          <span class="milestone-status status-pending">Pendiente</span>
+          <i class="fas fa-chevron-down ms-3 chevron"></i>
+        </div>
+      </div>
+      <div class="milestone-content" style="display: none;">
+        <ul class="tasks-list">
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 1: Recopilación de datos para entrenamiento</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 2: Diseño y desarrollo del modelo de IA</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 3: Validación del modelo</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Hito 4 -->
+    <div class="milestone-section">
+      <div class="milestone-header" onclick="toggleMilestone(this)">
+        <h3 class="milestone-title">
+          <i class="fas fa-project-diagram"></i>
+          Integración del algoritmo con hardware
+        </h3>
+        <div class="d-flex align-items-center">
+          <span class="milestone-status status-pending">Pendiente</span>
+          <i class="fas fa-chevron-down ms-3 chevron"></i>
+        </div>
+      </div>
+      <div class="milestone-content" style="display: none;">
+        <ul class="tasks-list">
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 1: Optimización del modelo para el hardware</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 2: Desarrollo de interfaz de comunicación</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 3: Implementación del algoritmo en dispositivo</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Hito 5 -->
+    <div class="milestone-section">
+      <div class="milestone-header" onclick="toggleMilestone(this)">
+        <h3 class="milestone-title">
+          <i class="fas fa-thumbs-up"></i>
+          Funcionamiento 100% de hardware
+        </h3>
+        <div class="d-flex align-items-center">
+          <span class="milestone-status status-pending">Pendiente</span>
+          <i class="fas fa-chevron-down ms-3 chevron"></i>
+        </div>
+      </div>
+      <div class="milestone-content" style="display: none;">
+        <ul class="tasks-list">
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 1: Pruebas de funcionamiento completo</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 2: Corrección de errores detectados</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-info">
+              <div class="task-name">Actividad 3: Validación final del sistema</div>
+              <div class="task-meta">
+                <div><i class="fas fa-user"></i> Asignado: Nadie</div>
+                <div><i class="fas fa-clock"></i> Estado: Pendiente</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMilestone(element) {
+      const content = element.nextElementSibling;
+      const chevron = element.querySelector('.chevron');
+      
+      if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
+        chevron.classList.add('rotate');
+      } else {
+        content.style.display = "none";
+        chevron.classList.remove('rotate');
+      }
+    }
+  </script>
+</body>
+</html>

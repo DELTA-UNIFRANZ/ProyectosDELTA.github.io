@@ -1,0 +1,420 @@
+/* Estilos generales */
+html, body {
+    background-color: #121212;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.dashboard-container {
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Header principal */
+.main-header {
+    background-color: #0d1c0d;
+    padding: 15px 0;
+    box-shadow: 0 4px 20px rgba(0, 255, 76, 0.15);
+    margin-bottom: 20px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-title {
+    color: #2fff74;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(47, 255, 116, 0.5);
+    font-size: 2.2rem;
+}
+
+.subtitle {
+    color: #a0ffb7;
+    margin: 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.logo-icon {
+    font-size: 3rem;
+    color: #2fff74;
+    animation: pulse 3s infinite;
+}
+
+/* Contenedor principal ajustado para evitar scroll */
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Estilos para las tarjetas del dashboard */
+.dashboard-card {
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 255, 76, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    margin-bottom: 15px;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 76, 0.3);
+}
+
+.card-header {
+    background-color: #0d1c0d;
+    color: #e0e0e0;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-bottom: 1px solid #2d4d2d;
+}
+
+.card-header h5 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+/* Indicador de estado del proyecto */
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.completed {
+    background-color: #2fff74;
+    box-shadow: 0 0 8px #2fff74;
+}
+
+.in-progress {
+    background-color: #ffcc00;
+    box-shadow: 0 0 8px #ffcc00;
+}
+
+.not-started, .status-pending {
+    background-color: #ff5252;
+    box-shadow: 0 0 8px #ff5252;
+}
+
+/* Badges para los estados */
+.status-completed {
+    background-color: #2fff74;
+    color: #0d1c0d;
+}
+
+.status-in-progress {
+    background-color: #ffcc00;
+    color: #0d1c0d;
+}
+
+.status-pending {
+    background-color: #ff5252;
+    color: #0d1c0d;
+}
+
+/* Iconos de proyecto */
+.project-icon {
+    font-size: 2.5rem;
+    color: #2fff74;
+    text-shadow: 0 0 10px rgba(47, 255, 116, 0.5);
+}
+
+/* Títulos de proyectos */
+.project-title {
+    font-weight: 600;
+    color: #2fff74;
+    margin-bottom: 15px;
+}
+
+/* Estilos para la barra de progreso */
+.progress {
+    height: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: #2fff74;
+    background-image: linear-gradient(45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-size: 1rem 1rem;
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+/* Estadísticas del proyecto */
+.project-stats {
+    margin-top: 15px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Estilos para la sección de equipo */
+.team-members {
+    padding: 5px 0;
+}
+
+.member-count {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #2fff74;
+}
+
+.team-stat {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #ccc;
+}
+
+/* Componentes adquiridos */
+.component-stats {
+    margin-bottom: 15px;
+}
+
+.bg-custom {
+    background-color: #2fff74;
+    color: #0d1c0d;
+}
+
+/* Botones personalizados */
+.btn-custom {
+    background-color: #0d1c0d;
+    color: #2fff74;
+    border: 1px solid #2fff74;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #2fff74;
+    color: #0d1c0d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(47, 255, 116, 0.3);
+}
+
+/* Estilos para componentes financieros */
+.finance-item {
+    padding: 5px 0;
+}
+
+.finance-item h6 {
+    color: #2fff74;
+    margin: 0;
+}
+
+/* Estilos para los inversores */
+.investor-chart {
+    border-top: 1px solid #333;
+    padding-top: 15px;
+}
+
+.investor-chart h6 {
+    color: #2fff74;
+    margin-bottom: 15px;
+}
+
+.investor-item {
+    margin-bottom: 10px;
+}
+
+.investor-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.investor-info i {
+    color: #2fff74;
+    margin-right: 10px;
+}
+
+/* Progreso circular */
+.circular-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.progress-ring {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2fff74;
+}
+
+/* Lista de hitos */
+.milestone-list h6 {
+    color: #2fff74;
+    margin-bottom: 10px;
+}
+
+.list-group-item {
+    background-color: #222;
+    border: 1px solid #333;
+    color: #e0e0e0;
+    margin-bottom: 5px;
+    border-radius: 5px !important;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 992px) {
+    .main-title {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .dashboard-container {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        padding: 10px 0;
+    }
+    
+    .logo-icon {
+        font-size: 2.2rem;
+    }
+    
+    .progress-ring {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .progress-text {
+        font-size: 1.3rem;
+    }
+    
+    .card-body {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-container {
+        padding: 8px;
+    }
+    
+    .card-header h5 {
+        font-size: 0.9rem;
+    }
+    
+    .project-icon {
+        font-size: 1.8rem;
+    }
+    
+    .main-title {
+        font-size: 1.3rem;
+    }
+    
+    .progress-ring {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .progress-text {
+        font-size: 1.1rem;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 400px) {
+    .header-content {
+        flex-direction: column;
+    }
+    
+    .logo-icon {
+        margin-bottom: 10px;
+    }
+}
+
+/* Animaciones */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes progress-bar-stripes {
+    from {
+        background-position: 1rem 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-card {
+    animation: fadeIn 0.6s ease;
+}
+
+/* Retraso de animación para elementos en cascada */
+.row > div:nth-child(1) .dashboard-card { animation-delay: 0.1s; }
+.row > div:nth-child(2) .dashboard-card { animation-delay: 0.2s; }
+.row > div:nth-child(3) .dashboard-card { animation-delay: 0.3s; }
+.row > div:nth-child(4) .dashboard-card { animation-delay: 0.4s; }
+.row > div:nth-child(5) .dashboard-card { animation-delay: 0.5s; }
+.row > div:nth-child(6) .dashboard-card { animation-delay: 0.6s; }
+.row > div:nth-child(7) .dashboard-card { animation-delay: 0.7s; }
