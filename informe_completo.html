@@ -115,7 +115,6 @@
       background-color: #0d2c0d;
       transform: translateY(-2px);
     }
-    /* Modal transparente */
     .modal { 
       display: none; 
       position: fixed; 
@@ -134,7 +133,9 @@
       border: 1px solid #2fff74; 
       border-radius: 10px; 
       width: 90%; 
-      max-width: 400px; 
+      max-width: 600px; 
+      max-height: 80vh; 
+      overflow-y: auto; 
       position: relative; 
       animation: modalFade 0.3s ease;
     }
@@ -168,6 +169,76 @@
     li {
       padding: 8px 0;
     }
+    .summary {
+      background: #0d1c0d;
+      color: #e0e0e0;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 30px 0;
+      border: 1px solid #2fff74;
+    }
+    .summary h2 {
+      color: #2fff74;
+      text-align: center;
+      margin-top: 0;
+    }
+    .summary-table {
+      width: 100%;
+      margin-top: 15px;
+    }
+    .summary-table td {
+      padding: 8px;
+    }
+    .summary-table td:first-child {
+      font-weight: bold;
+      color: #2fff74;
+    }
+    .adjustment {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 30px 0;
+      border: 1px solid #2fff74;
+    }
+    .adjustment h2 {
+      color: #2fff74;
+      text-align: center;
+      margin-top: 0;
+    }
+    .tabs {
+      display: flex;
+      margin-bottom: 15px;
+    }
+    .tab {
+      padding: 10px 20px;
+      background: #0d1c0d;
+      color: #e0e0e0;
+      border: 1px solid #2fff74;
+      border-radius: 6px 6px 0 0;
+      margin-right: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .tab.active {
+      background: #2fff74;
+      color: #0d1c0d;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+      padding: 20px;
+      background: #1a1a1a;
+      border: 1px solid #2fff74;
+      border-radius: 0 6px 6px 6px;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
   </style>
 </head>
 <body>
@@ -185,45 +256,97 @@
           <tr><th>Nombre</th><th>Gasto (Bs)</th><th>%</th><th>Detalle</th></tr>
         </thead>
         <tbody>
-          <tr><td>Edsonn Iver Condori Condori</td><td>150</td><td>20%</td><td><button class="detail-btn" data-member="edson">Ver detalle</button></td></tr>
-          <tr><td>Daner Miguel Mamani Caiza</td><td>150</td><td>20%</td><td><button class="detail-btn" data-member="daner">Ver detalle</button></td></tr>
-          <tr><td>Froilan Mamani Nina</td><td>200</td><td>26.7%</td><td><button class="detail-btn" data-member="froilan">Ver detalle</button></td></tr>
-          <tr><td>Sergio Andrés Mendoza Alvarado</td><td>150</td><td>20%</td><td><button class="detail-btn" data-member="sergio">Ver detalle</button></td></tr>
+          <tr><td>Edsonn Iver Condori Condori</td><td>999</td><td>30.1%</td><td><button class="detail-btn" data-member="edson">Ver detalle</button></td></tr>
+          <tr><td>Daner Miguel Mamani Caiza</td><td>655</td><td>19.8%</td><td><button class="detail-btn" data-member="daner">Ver detalle</button></td></tr>
+          <tr><td>Froilan Mamani Nina</td><td>1115</td><td>33.7%</td><td><button class="detail-btn" data-member="froilan">Ver detalle</button></td></tr>
+          <tr><td>Sergio Andrés Mendoza Alvarado</td><td>544</td><td>16.4%</td><td><button class="detail-btn" data-member="sergio">Ver detalle</button></td></tr>
         </tbody>
       </table>
     </div>
 
     <!-- Gráfico: Gastos vs Presupuesto -->
     <div class="chart">
-      <h2 class="chart-title">Gastos vs Presupuesto (750 Bs)</h2>
+      <h2 class="chart-title">Gastos vs Presupuesto Total (3313 Bs)</h2>
       <div class="gauges">
         <div class="gauge-container">
           <canvas id="gaugeEdson"></canvas>
           <div class="gauge-label">Edsonn</div>
-          <div class="gauge-value">150 / 750 Bs</div>
+          <div class="gauge-value">999 / 3313 Bs</div>
         </div>
         <div class="gauge-container">
           <canvas id="gaugeDaner"></canvas>
           <div class="gauge-label">Daner</div>
-          <div class="gauge-value">150 / 750 Bs</div>
+          <div class="gauge-value">655 / 3313 Bs</div>
         </div>
         <div class="gauge-container">
           <canvas id="gaugeFroilan"></canvas>
           <div class="gauge-label">Froilan</div>
-          <div class="gauge-value">200 / 750 Bs</div>
+          <div class="gauge-value">1115 / 3313 Bs</div>
         </div>
         <div class="gauge-container">
           <canvas id="gaugeSergio"></canvas>
           <div class="gauge-label">Sergio</div>
-          <div class="gauge-value">150 / 750 Bs</div>
+          <div class="gauge-value">544 / 3313 Bs</div>
         </div>
       </div>
     </div>
 
-    <!-- Gráfico: Evolución de gastos -->
-    <div class="chart">
-      <h2 class="chart-title">Evolución de Gastos</h2>
-      <canvas id="generalChart"></canvas>
+    <!-- Resumen y Ajuste de Cuentas -->
+    <div class="summary">
+      <h2>Resumen de Gastos</h2>
+      <table class="summary-table">
+        <tr>
+          <td>Gasto Total:</td>
+          <td>3313 Bs</td>
+        </tr>
+        <tr>
+          <td>Gasto Promedio por Miembro:</td>
+          <td>828.25 Bs</td>
+        </tr>
+        <tr>
+          <td>Gasto Máximo (Froilan):</td>
+          <td>1115 Bs</td>
+        </tr>
+        <tr>
+          <td>Gasto Mínimo (Sergio):</td>
+          <td>544 Bs</td>
+        </tr>
+        <tr>
+          <td>Presupuesto Utilizado:</td>
+          <td>3313 Bs</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="adjustment">
+      <h2>Opciones de Ajuste de Cuentas</h2>
+      
+      <div class="tabs">
+        <div class="tab active" onclick="openTab(event, 'option1')">Opción 1: Todos al máximo</div>
+        <div class="tab" onclick="openTab(event, 'option2')">Opción 2: Equilibrio equitativo</div>
+      </div>
+      
+      <div id="option1" class="tab-content active">
+        <p>Para que todos los miembros alcancen el nivel de gasto máximo (1115 Bs de Froilan), se necesita que cada miembro gaste adicionalmente:</p>
+        <ul>
+          <li>Edsonn debe gastar <b>116 Bs</b> adicionales para alcanzar 1115 Bs</li>
+          <li>Daner debe gastar <b>460 Bs</b> adicionales para alcanzar 1115 Bs</li>
+          <li>Froilan ya está en el máximo con <b>1115 Bs</b></li>
+          <li>Sergio debe gastar <b>571 Bs</b> adicionales para alcanzar 1115 Bs</li>
+        </ul>
+        <p>Esto significaría un gasto adicional total de <b>1147 Bs</b> en el proyecto.</p>
+      </div>
+      
+      <div id="option2" class="tab-content">
+        <p>Para equilibrar los gastos y que cada miembro aporte equitativamente (828.25 Bs), se necesitan los siguientes ajustes:</p>
+        <ul>
+          <li>Edsonn ha aportado <b>170.75 Bs</b> más de lo que debería (debe recibir esta cantidad)</li>
+          <li>Daner debe aportar <b>173.25 Bs</b> adicionales</li>
+          <li>Froilan ha aportado <b>286.75 Bs</b> más de lo que debería (debe recibir esta cantidad)</li>
+          <li>Sergio debe aportar <b>284.25 Bs</b> adicionales</li>
+        </ul>
+        <p>En resumen: Daner y Sergio deberían dar un total de <b>457.5 Bs</b> que se distribuirían a Edsonn y Froilan.</p>
+      </div>
     </div>
 
     <!-- Modal de detalle -->
@@ -244,96 +367,13 @@
     Chart.defaults.color = '#e0e0e0';
     Chart.defaults.borderColor = '#333';
     
-    // Datos generales para el gráfico de evolución
-    const generalData = {
-      labels: ['01-04-2025','05-04-2025','10-04-2025','15-04-2025'],
-      datasets: [{
-        label: 'Edsonn', 
-        data: [50,100,150,150], 
-        fill: false, 
-        borderColor: '#2fff74',
-        tension: 0.3,
-        borderWidth: 3
-      },{
-        label: 'Daner', 
-        data: [30,80,120,150], 
-        fill: false, 
-        borderColor: '#ffc107',
-        tension: 0.3,
-        borderWidth: 3
-      },{
-        label: 'Froilan', 
-        data: [0,50,100,200], 
-        fill: false, 
-        borderColor: '#0dcaf0',
-        tension: 0.3,
-        borderWidth: 3
-      },{
-        label: 'Sergio', 
-        data: [20,60,110,150], 
-        fill: false, 
-        borderColor: '#6f42c1',
-        tension: 0.3,
-        borderWidth: 3
-      }]
-    };
-    
-    // Configuración del gráfico de evolución
-    const generalChartConfig = {
-      type: 'line',
-      data: generalData,
-      options: {
-        responsive: true,
-        maintainAspectRatio: true,
-        plugins: {
-          legend: {
-            position: 'top',
-            labels: {
-              boxWidth: 15,
-              padding: 15
-            }
-          },
-          tooltip: {
-            backgroundColor: '#1a1a1a',
-            titleColor: '#2fff74',
-            bodyColor: '#e0e0e0',
-            borderColor: '#2fff74',
-            borderWidth: 1,
-            padding: 10,
-            displayColors: true,
-            usePointStyle: true
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Gasto (Bs)',
-              color: '#2fff74'
-            }
-          },
-          x: {
-            title: {
-              display: true,
-              text: 'Fecha',
-              color: '#2fff74'
-            }
-          }
-        }
-      }
-    };
-    
-    // Crear el gráfico de evolución
-    new Chart(document.getElementById('generalChart'), generalChartConfig);
-
     // Variables de presupuesto
-    const budget = 750;
+    const totalBudget = 3313;
     const spends = { 
-      edson: 150, 
-      daner: 150, 
-      froilan: 200, 
-      sergio: 150 
+      edson: 999, 
+      daner: 655, 
+      froilan: 1115, 
+      sergio: 544 
     };
     
     // Colores para los gauges
@@ -362,16 +402,16 @@
     
     // Función para crear un gauge
     function createGauge(elementId, spendAmount) {
-      const percentage = (spendAmount / budget) * 100;
+      const percentage = (spendAmount / totalBudget) * 100;
       let color;
       
       if (percentage <= 25) color = colors.green;
-      else if (percentage <= 50) color = colors.yellow;
+      else if (percentage <= 35) color = colors.yellow;
       else color = colors.red;
       
       const data = {
         datasets: [{
-          data: [spendAmount, budget - spendAmount],
+          data: [spendAmount, totalBudget - spendAmount],
           backgroundColor: [color, colors.gray],
           borderWidth: 0
         }]
@@ -392,10 +432,71 @@
 
     // Detalles de gastos
     const details = {
-      edson: ['150 Bs - Pago de la impresión 3D'],
-      daner: ['150 Bs - Pago de la impresión 3D'],
-      froilan: ['150 Bs - Pago de la impresión 3D', '50 Bs - Pago de piezas faltantes de impresión 3D'],
-      sergio: ['150 Bs - Pago de la impresión 3D']
+      edson: [
+        '288 Bs - 12 drivers 8825',
+        '245 Bs - Perfil de aluminio',
+        '160 Bs - Ruedas declin v',
+        '28 Bs - Servo',
+        '340 Bs - Motores DC',
+        '20 Bs - Malla',
+        '150 Bs - Impresión 3D',
+        '96 Bs - Rodamentos (12 unidades)',
+        '12 Bs - Rodamento 6206',
+        '-340 Bs - Descuento (aporte de Miguel)',
+        'Total: 999 Bs'
+      ],
+      daner: [
+        '340 Bs - Aporte a Edson',
+        '85 Bs - Pernos y tuercas',
+        '5 Bs - Correa',
+        '45 Bs - Fuente',
+        '10 Bs - Rodamento',
+        '20 Bs - Soldadura',
+        '150 Bs - Impresión 3D',
+        'Total: 655 Bs'
+      ],
+      froilan: [
+        '150 Bs - Pago de la impresión 3D',
+        '50 Bs - Piezas faltantes de impresión 3D',
+        '100 Bs - Piezas extras',
+        '58 Bs - Fierros y varillas',
+        '35 Bs - Correas',
+        '12 Bs - Rodamentos (2 unidades)',
+        '80 Bs - Acople (4 unidades)',
+        '174 Bs - Motor nema17',
+        '32 Bs - Soporte para motor (4 unidades)',
+        '54 Bs - Driver para motor',
+        '12 Bs - Conector aislado hembra',
+        '15 Bs - Tuercas M8 (1 docena)',
+        '10 Bs - Tuercas M6 (1 docena)',
+        '12 Bs - Tornillo M3 (2 docenas)',
+        '50 Bs - Perno y tuercas M3 y M4 a tuercas dobles',
+        '10 Bs - Pernos ayude Edson',
+        '6 Bs - Varilla 6m',
+        '12 Bs - Atachado tipos D',
+        '4 Bs - Tensor de polea',
+        '15 Bs - Sprite Negro',
+        '8 Bs - Capacitores 100uf',
+        '15 Bs - Clips para cable (1 caja)',
+        '10 Bs - Presinto (1 caja)',
+        '32 Bs - Ultrasónico (2 unidades)',
+        '48 Bs - Boeneras (24 unidades)',
+        '24 Bs - Varilla tipo tornillo de 3,6,8',
+        '20 Bs - Sensor ACS712',
+        '50 Bs - Termocupla',
+        '17 Bs - IRF250 módulo',
+        'Total: 1115 Bs'
+      ],
+      sergio: [
+        '150 Bs - Impresión 3D',
+        '40 Bs - Soporte de ultrasónico',
+        '25 Bs - Driver 6680',
+        '16 Bs - Pieza extra impresión',
+        '4 Bs - Tensor de polea',
+        '135 Bs - Lidar',
+        '174 Bs - Nema17',
+        'Total: 544 Bs'
+      ]
     };
     
     // Nombres completos para el título del modal
@@ -424,6 +525,25 @@
     // Cerrar el modal
     document.getElementById('modalClose').onclick = () => modal.style.display = 'none';
     window.onclick = e => { if(e.target === modal) modal.style.display = 'none'; };
+    
+    // Función para manejar las pestañas
+    function openTab(evt, tabName) {
+      // Ocultar todos los contenidos de pestañas
+      var tabContents = document.getElementsByClassName("tab-content");
+      for (var i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove("active");
+      }
+      
+      // Desactivar todas las pestañas
+      var tabs = document.getElementsByClassName("tab");
+      for (var i = a = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+      }
+      
+      // Mostrar el contenido de la pestaña actual y marcar la pestaña como activa
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
   </script>
 </body>
 </html>
